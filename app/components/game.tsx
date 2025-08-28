@@ -178,18 +178,45 @@ export default function GamePlayer({ gameId, name }: GameProps) {
               Type the paragraph below
             </h1>
 
-            <div className="relative h-full">
-              <p className="text-2xl lg:text-5xl p-5">{paragraph}</p>
+            <div className="relative h-full p-5 text-2xl lg:text-5xl leading-relaxed">
+              {/* Render live highlighting */}
+              <p className="whitespace-pre-wrap break-words">
+                {paragraph.split("").map((char, index) => {
+                  if (index < inputParagraph.length) {
+                    return (
+                      <span
+                        key={index}
+                        className={
+                          inputParagraph[index] === char
+                            ? "text-green-500" 
+                            : "text-red-500"  
+                        }
+                      >
+                        {char}
+                      </span>
+                    );
+                  } else {
+                    return (
+                      <span key={index} className="text-gray-400 opacity-50">
+                        {char}
+                      </span>
+                    );
+                  }
+                })}
+              </p>
 
+              {/* Actual input overlay but transparent */}
               <Textarea
                 value={inputParagraph}
                 onChange={(e) => setInputParagraph(e.target.value)}
-                className="text-2xl lg:text-5xl outline-none p-5 absolute top-0 left-0 right-0 bottom-0 z-10 opacity-75"
+                className="absolute top-0 left-0 right-0 bottom-0 z-10 opacity-0 pointer-events-auto"
                 disabled={gameStatus !== "in-progress" || !ioInstance}
+                autoFocus
               />
             </div>
           </div>
         )}
+
 
         {gameStatus === "finished" && (
           <div className="flex flex-col items-center justify-center p-10">
@@ -205,7 +232,7 @@ export default function GamePlayer({ gameId, name }: GameProps) {
                 Start Game
               </Button>
               <CopyToClipboard gameID={gameId} />              </div>
-              </>
+              </> 
             )}
           </div>
         )}

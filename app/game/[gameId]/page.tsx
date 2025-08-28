@@ -1,7 +1,5 @@
 import GamePlayer from "@/app/components/game";
 import { Button } from "@/app/components/ui/button";
-import { Card } from "@/app/components/ui/card";
-import Input from "postcss/lib/input";
 import { redirect } from "next/navigation";
 
 export default function GameJoin({
@@ -47,26 +45,3 @@ export default function GameJoin({
 
   return <GamePlayer gameId={params.gameId} name={searchParams.name} />;
 }
-
-// <main className="mx-auto max-w-5xl w-full mt-10 p-5">
-      //   <Card className="w-full flex flex-col p-10">
-      //     <h2 className="font-bold text-4xl md:text-5xl">Enter your name</h2>
-      //     <p className="text-gray-400 mt-5 text-lg">
-      //       Before you join the game, we require you to provide a
-      //       nickname/username. This nickname/username will be shown in the
-      //       leaderboard and in the participants section.
-      //     </p>
-
-      //     <form action={appendName} className="mt-10">
-      //       <Input
-      //         type="text"
-      //         placeholder="Name"
-      //         name="name"
-      //         className="text-xl px-5 py-7" />
-
-      //       <Button type="submit" className="text-xl w-full mt-5 px-5 py-7">
-      //         Join Game
-      //       </Button>
-      //     </form>
-      //   </Card>
-      // </main>
