@@ -56,11 +56,10 @@ export default function GamePlayer({ gameId, name }: GameProps) {
     if (!ioInstance) return;
 
     ioInstance.on("connect", () => {
-      console.log("connected");
+      // Connected to server
     });
 
     ioInstance.on("players", (players: Player[]) => {
-      console.log("received players");
       setPlayers(players);
     });
 
