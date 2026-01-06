@@ -2,21 +2,25 @@
 
 import { useState } from "react";
 
+/**
+ * Copy to clipboard component with visual feedback
+ */
 const CopyToClipboard = ({ gameID }: { gameID: string }) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
+  /**
+   * Copies game ID to clipboard and shows success feedback
+   */
   const copyToClipboard = async () => {
-    const copyText = gameID;
-  
     try {
-      await navigator.clipboard.writeText(copyText);
+      await navigator.clipboard.writeText(gameID);
       setIsCopied(true);
   
       setTimeout(() => {
         setIsCopied(false);
       }, 1500);
     } catch (err) {
-      console.error('Unable to copy to clipboard', err);
+      console.error('Unable to copy to clipboard:', err);
     }
   };
   
@@ -48,7 +52,7 @@ const CopyToClipboard = ({ gameID }: { gameID: string }) => {
               fill="none"
               viewBox="0 0 16 12"
             >
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5.917 5.724 10.5 15 1.5"/>
             </svg>
             <span className={`${isCopied ? '' : 'hidden'} text-xs font-semibold`}>Copied</span>
           </span>
